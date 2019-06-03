@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Blue Mountain</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="xCat 使用方法新装centos74 作为xcat master， 关闭selinux。ip:192.168.18.28 hostname:centos74 xcat 安装： 下载安装包： 12https://xcat.org/files/xcat/xcat-dep/2.x_Linux/xcat-dep-2.14.2-linux.tar.bz2 https://xcat.org/files/xc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Blue Mountain">
+<meta property="og:url" content="http://yoursite.com/2019/06/03/xcat使用手册/index.html">
+<meta property="og:site_name" content="Blue Mountain">
+<meta property="og:description" content="xCat 使用方法新装centos74 作为xcat master， 关闭selinux。ip:192.168.18.28 hostname:centos74 xcat 安装： 下载安装包： 12https://xcat.org/files/xcat/xcat-dep/2.x_Linux/xcat-dep-2.14.2-linux.tar.bz2 https://xcat.org/files/xc">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-27T10:06:31.221Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Blue Mountain">
+<meta name="twitter:description" content="xCat 使用方法新装centos74 作为xcat master， 关闭selinux。ip:192.168.18.28 hostname:centos74 xcat 安装： 下载安装包： 12https://xcat.org/files/xcat/xcat-dep/2.x_Linux/xcat-dep-2.14.2-linux.tar.bz2 https://xcat.org/files/xc">
+  
+  <link rel="stylesheet" href="/css/index.css">
+</head>
+</html>
+<body style="
+
+
+  background-color: #eff0f6
+
+">
+  <div id="container">
+    <nav id="nav">
+  <header class="header">
+    <a href="/" class="title">Blue Mountain</a>
+  </header>
+  <div class="ctnWrap">
+    <div class="icons">
+      
+        
+          
+            <a href="https://dribbble.com/clovertuan" target="_blank" class="nav-icn iconfont icon-dribbble"></a>
+          
+        
+          
+            <a href="https://www.behance.net/clovertuan" target="_blank" class="nav-icn iconfont icon-behance"></a>
+          
+        
+          
+            <a href="http://clovertuan.lofter.com/" target="_blank" class="nav-icn iconfont icon-lofter"></a>
+          
+        
+          
+            <a href="https://www.instagram.com/clovertuan/" target="_blank" class="nav-icn iconfont icon-instagram"></a>
+          
+        
+          
+            <a href="https://github.com/cloverTuan" target="_blank" class="nav-icn iconfont icon-github"></a>
+          
+        
+      
+    </div>
+    <div class="menu">
+      
+        
+            <a href="/" class="nav-menu ">HOME</a>
+          
+        
+            <a href="/capacity" class="nav-menu ">CAPACITY</a>
+          
+        
+            <a href="/about" class="nav-menu ">ABOUT</a>
+          
+        
+      
+    </div>
+  </div>
+</nav>
+    <div id="main"><section class="article">
+  <h2 class="title"></h2>
+  <p class="sub">Jun 3, 2019</p>
+  <article class="content">
+    <h1 id="xCat-使用方法"><a href="#xCat-使用方法" class="headerlink" title="xCat 使用方法"></a>xCat 使用方法</h1><p>新装centos74 作为xcat master， 关闭selinux。<br>ip:192.168.18.28 hostname:centos74</p>
+<h2 id="xcat-安装："><a href="#xcat-安装：" class="headerlink" title="xcat 安装："></a>xcat 安装：</h2><ol>
+<li><p>下载安装包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://xcat.org/files/xcat/xcat-dep/2.x_Linux/xcat-dep-2.14.2-linux.tar.bz2 </span><br><span class="line">https://xcat.org/files/xcat/xcat-core/2.14.x_Linux/xcat-core/xcat-core-2.14.2-linux.tar.bz2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解压：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar jxvf xcat-core-2.14.2-linux.tar.bz2 </span><br><span class="line">tar jxvf xcat-dep-2.14.2-linux.tar.bz2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加yum源：（根据自己的linux环境选择，我的是redhat6，64位）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /root/xcat-dep/rh6/x86_64; ./mklocalrepo.sh</span><br><span class="line">cd /root/xcat-core; ./mklocalrepo.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开始安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum clean metadata</span><br><span class="line">yum install -y xCAT</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>检查xCAT是否安装正确:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile.d/xcat.sh</span><br><span class="line">tabdump site</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="xcat-配置："><a href="#xcat-配置：" class="headerlink" title="xcat 配置："></a>xcat 配置：</h2><p>配置xcat服务器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chtab key=master site.value=192.168.18.28  </span><br><span class="line">chtab key=domain site.value=HPC # 根据具体情况配置，这个属性最后会被写到每个node的/etc/resolv.conf文件里 (必须配置)</span><br><span class="line">chtab key=nameservers site.value=192.168.18.28 # 根据具体情况配置，这个属性最后会被写到每个node的/etc/resolv.conf文件里  </span><br><span class="line">chtab key=forwarders site.value=192.168.0.1</span><br></pre></td></tr></table></figure>
+
+<p>tabdump networks 命令来检查一下networks表信息, 不一致则修改:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">chtab netname=192_168_18_0-255_255_255_0 \</span><br><span class="line">	networks.net=192.168.18.0 \</span><br><span class="line">	networks.mask=255.255.255.0 \</span><br><span class="line">	networks.gateway=192.168.0.1 \</span><br><span class="line">	networks.dhcpserver=192.168.18.28 \</span><br><span class="line">	networks.tftpserver=192.168.18.28 \</span><br><span class="line">	networks.nameservers=192.168.18.28 \</span><br><span class="line">	networks.ntpservers=192.168.18.28</span><br></pre></td></tr></table></figure>
+
+<p>tabdump passwd 查看密码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chtab key=system passwd.username=root passwd.password=jhadmin</span><br><span class="line">chtab key=system passwd.username=Administrator passwd.password=jhadmin</span><br></pre></td></tr></table></figure>
+
+<p>配置hosts，可以查看/etc/hosts:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">makehosts #配置hosts </span><br><span class="line">127.0.0.1 localhost  </span><br><span class="line">192.168.18.22 centos74   centos74.HPC</span><br></pre></td></tr></table></figure>
+
+<p>配置DNS:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">makedns -n  </span><br><span class="line">service named restart</span><br></pre></td></tr></table></figure>
+
+<p>配置dhcp，编辑/etc/dhcp/dhcpd.conf文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">user=dhcpd  </span><br><span class="line">group=dhcpd  </span><br><span class="line">改为  </span><br><span class="line">user=root  </span><br><span class="line">group=root</span><br><span class="line">重启服务：</span><br><span class="line">systemctl restart dhcpd.service </span><br><span class="line">makedhcp -n</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">#### 注意：如果存在windows节点，则需要xcat master上配置samba，安装过程需要。</span><br><span class="line">安装samba： yum install samba.</span><br><span class="line">修改/etc/samba/smb.conf的[global]段： security = share。</span><br><span class="line">注意： samba4 设置（需要设置install目录及下所有权限为777）：</span><br></pre></td></tr></table></figure>
+
+<p>security = user<br>map to guest = Bad User </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">并增加</span><br></pre></td></tr></table></figure>
+
+<p>[install]<br>path = /install<br>public = yes<br>writable = yes<br>guest ok = yes </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">	chkconfig smb on</span><br><span class="line">    service smb restart </span><br><span class="line"></span><br><span class="line">## 新增节点</span><br><span class="line">### centos7.4：</span><br><span class="line">hostname: test ip: 192.168.18.29 mac: 080027D59856  内存大于1G</span><br><span class="line"></span><br><span class="line">1. 添加节点：</span><br></pre></td></tr></table></figure>
+
+<p>nodeadd test <br>    groups=compute,all <br>    mac.interface=enp0s3  <br>    mac.mac=08:00:27:D5:98:56 <br>    hosts.ip=192.168.18.29 <br>    noderes.netboot=pxe <br>    noderes.xcatmaster=192.168.18.28 <br>    noderes.installnic=enp0s3  <br>    noderes.primarynic=enp0s3  <br>    noderes.nfsserver=192.168.18.28 <br>    nodetype.os=centos7.4 <br>    nodetype.arch=x86_64 <br>    nodetype.profile=compute <br>    nodetype.nodetype=osi </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用lsdef test查看配置信息。</span><br><span class="line">2. 添加镜像：</span><br></pre></td></tr></table></figure>
+
+<p>[root@centos74 init.d]# copycds -n centos7 /media/sf_VData/xCat/CentOS-7-x86_64-DVD-1708.iso<br>Copying media to /install/centos7/x86_64<br>Media copy operation successful </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用lsdef -t osimage 查看， 根据需求修改模板</span><br></pre></td></tr></table></figure>
+
+<p>chdef -t osimage centos7-x86_64-install-compute template=/media/sf_VData/xCat/template/centos7.4/compute.centos7.tmpl<br>pkglist=/media/sf_VData/xCat/template/centos7.4/compute.centos7.pkglist</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3. 配置其他信息：</span><br></pre></td></tr></table></figure>
+
+<p>makehosts //添加/etc/hosts<br>makedns test //添加dns<br>makedhcp test // 配置dhcp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4. 添加后处理：</span><br></pre></td></tr></table></figure>
+
+<p>tabdump postscripts  //查看后处理配置<br>添加compute后处理类型：<br>chtab node=compute  postscripts.postscripts=”install_Unischeduler”<br>lsdef test可查看是否改变。<br>创建后处理需要用到的文件目录：<br>cp * /install/postscripts<br>权限修改为755</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">4. 安装系统:</span><br><span class="line">nodeset test osimage=centos7-x86_64-install-compute</span><br><span class="line"></span><br><span class="line">### win7:</span><br><span class="line">hostname: wtest  ip: 192.168.18.30  mac: 080027299B89 </span><br><span class="line"></span><br><span class="line">1. 添加节点：</span><br></pre></td></tr></table></figure>
+
+<p>nodeadd wtest <br>    groups=compute,all <br>    mac.interface=enp0s3  <br>    mac.mac=08:00:27:29:9B:89 <br>    hosts.ip=192.168.18.30 <br>    noderes.netboot=pxe <br>    noderes.xcatmaster=192.168.18.28 <br>    noderes.installnic=enp0s3  <br>    noderes.primarynic=enp0s3  <br>    noderes.nfsserver=192.168.18.28 <br>    nodetype.os=win7 <br>    nodetype.arch=x86_64 <br>    nodetype.profile=compute <br>    nodetype.nodetype=osi<br>再执行：chdef wtest kernel=Boot/pxeboot.0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">使用lsdef wtest查看配置信息。 </span><br><span class="line"></span><br><span class="line">2. 添加镜像：</span><br></pre></td></tr></table></figure>
+
+<p> copycds -n win7 /media/sf_VData/xCat/cn_windows_7_ultimate_x64_dvd_x15-66043.iso<br>Copying media to /install/win7/x86_64<br>Media copy operation successful </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">chdef -t osimage win7-x86_64-install-compute \</span><br><span class="line">imagetype=windows \</span><br><span class="line">osarch=x86_64 \</span><br><span class="line">osname=Windows \</span><br><span class="line">osvers=win7 \</span><br><span class="line">profile=ultimate \</span><br><span class="line">provmethod=install \</span><br><span class="line">template=/media/sf_VData/xCat/template/win7/ultimate.win7.x86_64.tmpl</span><br></pre></td></tr></table></figure>
+
+<p>使用lsdef -t osimage 查看</p>
+<ol start="3">
+<li>boot程序（之前提前已经做好，不同windows需要制作对应版本boot，需要添加网络驱动）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@centos74 tftpboot]# ls /media/sf_VData/xCat/template/win7/startBoot/*</span><br><span class="line">/media/sf_VData/xCat/template/win7/startBoot/bootmgr.exe</span><br><span class="line">/media/sf_VData/xCat/template/win7/startBoot/Boot:</span><br><span class="line">BCD     BCD.64.LOG   BCD.64.LOG2   bootmgr.efi  Fonts      wdsmgfw.efi</span><br><span class="line">BCD.64  BCD.64.LOG1  bootmgfw.efi  boot.sdi     pxeboot.0  WinPE_64.wim </span><br><span class="line">[root@centos74 tftpboot]# cp /media/sf_VData/xCat/template/win7/startBoot/* . -r</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>注意修改权限为755.</p>
+<ol start="4">
+<li>配置其他信息：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">makehosts //添加/etc/hosts</span><br><span class="line">makedns test //添加dns</span><br><span class="line">makedhcp test // 配置dhcp</span><br><span class="line">``` </span><br><span class="line">5. 添加后处理：</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>chdef -t site clustersite precreatemypostscripts=1<br>创建后处理需要用到的文件目录：<br>cp * /install/winpostscripts<br>权限修改为755</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">6. 添加驱动:</span><br><span class="line">将驱动拷贝到/install/drivers/&lt;os&gt;/&lt;arch&gt; 目录下。</span><br><span class="line">例如: /install/drivers/win2012r2/x86_64/</span><br><span class="line">7. 安装系统:</span><br><span class="line">nodeset test osimage=win7-x86_64-install-compute</span><br><span class="line"></span><br><span class="line">8. /install/autoinst目录下，对应的$IP.cmd 需要添加：</span><br></pre></td></tr></table></figure>
+
+<p>…<br>copy %instdrv%\winpostscripts* c:\xcatpost^M
+copy %instdrv%\mypostscripts\mypostscript.htest c:\xcatpost^M
+goto up<br>:SKIPPOST^M<br>reg load HKLM\csystem c:\windows\system32\config\system^M<br>…</p>
+<pre><code>
+# API 安装
+安装包：
+yum install mod_ssl
+service httpd restart
+yum install perl-JSON
+
+增加可接入用户：
+tabch key=xcat,username=root passwd.password=&lt;root-pw&gt;
+
+
+问题总结：
+1. bios需要启用pxe boot并且设置从网路启动
+2. 提示succeed to downloadn NBP file。但是没有执行安装而正常启动，则需要开启legacy mode。
+3. 安装系统得模板文件已提供，针对中英文版本，需要修改模板中安装得语音，以实际情况为准。
+4. 后处理脚本文件已提供，需要针对实际情况修改。
+
+# IPMI 使用：
+
+- 设置使用 IPMI
+        nodech &lt;noderange&gt; nodehm.power=ipmi nodehm.mgt=ipmi
+- 设置 IPMI 的IP地址，用户名和密码等属性
+        nodech &lt;noderange&gt; ipmi.bmc=&lt;ipmi ip address&gt; ipmi.username=&lt;ipmi username&gt; ipmi.password=&lt;ipmi password&gt;
+- 设置要安装的操作系统镜像
+        nodeset &lt;noderange&gt; osimage=rhel5.8-x86_64-install-compute
+- 设置机器使用网络启动
+        rsetboot &lt;noderange&gt; net
+- 重启机器执行安装
+        rpower &lt;noderange&gt; reset</code></pre>
+  </article>
+  <footer class="f-cf">
+    
+    
+      <a href="/2019/06/03/PBS安装教程/" class="link f-fr">PBS安装教程⟶</a>
+    
+  </footer>
+</section></div>
+    <footer id="footer" class="f-cf">
+  wren@jhinno.com
+  
+    
+      
+        · <a href="https://dribbble.com/clovertuan" target="_blank" class="nav-icn">Dribbble</a>
+      
+    
+      
+        · <a href="https://www.behance.net/clovertuan" target="_blank" class="nav-icn">Behance</a>
+      
+    
+      
+        · <a href="http://clovertuan.lofter.com/" target="_blank" class="nav-icn">Lofter</a>
+      
+    
+      
+        · <a href="https://www.instagram.com/clovertuan/" target="_blank" class="nav-icn">Instagram</a>
+      
+    
+      
+        · <a href="https://github.com/cloverTuan" target="_blank" class="nav-icn">GitHub</a>
+      
+    
+  
+  <span class="copyright">All rights reserved @Blue Mountain</span>
+</footer>
+  </div>
+</body>
+</html>
