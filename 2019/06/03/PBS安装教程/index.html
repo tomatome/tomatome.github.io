@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>PBS安装教程 | Blue Mountain</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="PBS 安装方法 源码路径： https://github.com/pbspro/pbspro  编译方法： ./configure &amp;amp;&amp;amp; make &amp;amp;&amp;amp; make install  安装配置：1. 安装 cd $PBS_EXEC/libexec ./pbs_postinstall 1. 配置 修改/etc/pbs.conf PBS_SERVER=QRH62C PB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PBS安装教程">
+<meta property="og:url" content="http://yoursite.com/2019/06/03/PBS安装教程/index.html">
+<meta property="og:site_name" content="Blue Mountain">
+<meta property="og:description" content="PBS 安装方法 源码路径： https://github.com/pbspro/pbspro  编译方法： ./configure &amp;amp;&amp;amp; make &amp;amp;&amp;amp; make install  安装配置：1. 安装 cd $PBS_EXEC/libexec ./pbs_postinstall 1. 配置 修改/etc/pbs.conf PBS_SERVER=QRH62C PB">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-03T02:32:00.865Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PBS安装教程">
+<meta name="twitter:description" content="PBS 安装方法 源码路径： https://github.com/pbspro/pbspro  编译方法： ./configure &amp;amp;&amp;amp; make &amp;amp;&amp;amp; make install  安装配置：1. 安装 cd $PBS_EXEC/libexec ./pbs_postinstall 1. 配置 修改/etc/pbs.conf PBS_SERVER=QRH62C PB">
+  
+  <link rel="stylesheet" href="/css/index.css">
+</head>
+</html>
+<body style="
+
+
+  background-color: #eff0f6
+
+">
+  <div id="container">
+    <nav id="nav">
+  <header class="header">
+    <a href="/" class="title">Blue Mountain</a>
+  </header>
+  <div class="ctnWrap">
+    <div class="icons">
+      
+        
+          
+            <a href="https://dribbble.com/clovertuan" target="_blank" class="nav-icn iconfont icon-dribbble"></a>
+          
+        
+          
+            <a href="https://www.behance.net/clovertuan" target="_blank" class="nav-icn iconfont icon-behance"></a>
+          
+        
+          
+            <a href="http://clovertuan.lofter.com/" target="_blank" class="nav-icn iconfont icon-lofter"></a>
+          
+        
+          
+            <a href="https://www.instagram.com/clovertuan/" target="_blank" class="nav-icn iconfont icon-instagram"></a>
+          
+        
+          
+            <a href="https://github.com/cloverTuan" target="_blank" class="nav-icn iconfont icon-github"></a>
+          
+        
+      
+    </div>
+    <div class="menu">
+      
+        
+            <a href="/" class="nav-menu ">HOME</a>
+          
+        
+            <a href="/archives" class="nav-menu ">ARCHIVE</a>
+          
+        
+            <a href="/about" class="nav-menu ">ABOUT</a>
+          
+        
+      
+    </div>
+  </div>
+</nav>
+    <div id="main"><section class="article">
+  <h2 class="title">PBS安装教程</h2>
+  <p class="sub">Jun 3, 2019</p>
+  <article class="content">
+    <h1 id="PBS-安装方法"><a href="#PBS-安装方法" class="headerlink" title="PBS 安装方法"></a>PBS 安装方法</h1><hr>
+<h3 id="源码路径："><a href="#源码路径：" class="headerlink" title="源码路径："></a>源码路径：</h3><blockquote>
+<p><a href="https://github.com/pbspro/pbspro" target="_blank" rel="noopener">https://github.com/pbspro/pbspro</a></p>
+</blockquote>
+<h3 id="编译方法："><a href="#编译方法：" class="headerlink" title="编译方法："></a>编译方法：</h3><blockquote>
+<p>./configure &amp;&amp; make &amp;&amp; make install</p>
+</blockquote>
+<h3 id="安装配置："><a href="#安装配置：" class="headerlink" title="安装配置："></a>安装配置：</h3><pre><code>1. 安装
+cd $PBS_EXEC/libexec
+./pbs_postinstall
+1. 配置
+修改/etc/pbs.conf
+PBS_SERVER=QRH62C
+PBS_START_SERVER=0 //0：非server节点 1：server节点
+PBS_START_SCHED=1
+PBS_START_COMM=1
+PBS_START_MOM=1  //执行作业进程
+PBS_EXEC=/apps/pbs   //PBS 安装执行路径
+PBS_HOME=/var/spool/pbs   //PBS work路径
+PBS_CORE_LIMIT=unlimited
+PBS_SCP=/usr/bin/scp
+
+修改$PBS_EXEC/sbin目录下pbs_iff, pbs_rcp为4755
+[root@QRH62B sbin]# ll
+total 13680
+-rwsr-xr-x 1 root root  596429 Apr 26 15:50 pbs_iff
+-rwsr-xr-x 1 root root   54886 Apr 26 15:50 pbs_rcp
+
+安装postgresql数据库:
+下载 postgresql-9.6.8.tar.gz 并解压
+./configure &amp;&amp; make &amp;&amp; make install
+配置$POSTGRESQL_HOME/bin到 PATH 里面</code></pre><h3 id="启动："><a href="#启动：" class="headerlink" title="启动："></a>启动：</h3><pre><code>source  /etc/profile.d/pbs.sh
+/etc/init.d/pbs start/stop/restart
+
+增加节点：
+qmgr -c &quot;create node QRH62B&quot;
+
+查看节点：
+pbsnodes -a</code></pre><h3 id="提交-查看作业"><a href="#提交-查看作业" class="headerlink" title="提交/查看作业"></a>提交/查看作业</h3><pre><code>echo &quot;sleep 100&quot;|qsub -l nodes=1:ppn=1 //提交作业sleep 100， 请求一个节点，使用节点1个ncpus
+qstat -f $JOBID/ qstat -a   //查看作业</code></pre>
+  </article>
+  <footer class="f-cf">
+    
+    
+      <a href="/2019/06/01/hello-world/" class="link f-fr">Hello World⟶</a>
+    
+  </footer>
+</section></div>
+    <footer id="footer" class="f-cf">
+  wren@jhinno.com
+  
+    
+      
+        · <a href="https://dribbble.com/clovertuan" target="_blank" class="nav-icn">Dribbble</a>
+      
+    
+      
+        · <a href="https://www.behance.net/clovertuan" target="_blank" class="nav-icn">Behance</a>
+      
+    
+      
+        · <a href="http://clovertuan.lofter.com/" target="_blank" class="nav-icn">Lofter</a>
+      
+    
+      
+        · <a href="https://www.instagram.com/clovertuan/" target="_blank" class="nav-icn">Instagram</a>
+      
+    
+      
+        · <a href="https://github.com/cloverTuan" target="_blank" class="nav-icn">GitHub</a>
+      
+    
+  
+  <span class="copyright">All rights reserved @Blue Mountain</span>
+</footer>
+  </div>
+</body>
+</html>
